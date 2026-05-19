@@ -16,7 +16,7 @@ The **SAC_Node_Exporter** is a simple and fast tool for exporting specific node 
     Automatically populates the **Export Path** field with the directory of your currently open Nuke script. 
     *Note: Your script must be saved to disk for this to work.*
 *   **Export Path :** 
-    The base directory where the exported files will be saved. You can manually browse for a path using the folder icon.
+    The base directory where the exported files will be saved, you can manually browse for a path using the folder icon.
 *   **File Name :** 
     Enter the desired name for your file (e.g., `Color_Grade_Setup`). Do not worry about adding extensions; the tool handles them automatically.
 
@@ -36,8 +36,8 @@ The tool automatically creates a subfolder named **`Exported_Nodes`** within you
 
     Feel free to modify the tool as per your needs.
 
-    If the tool was useful or if there is any improved needed it would be kind if you leave a feedback on **sactools.support@gmail.com** .
+    Please leave a feedback on **sactools.support@gmail.com** if the tool was useful or if there are any improvements needed.
 
-    If you have any repetative tasks in nuke which need automation please me know. 
+    If you have any repetative tasks in nuke which need automation please let me know. 
 
     THANK YOU
