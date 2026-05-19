@@ -1,8 +1,6 @@
 # SAC_NODE_EXPORTER
 The **SAC_Node_Exporter** is a simple and fast tool for exporting specific node selections into external files. Instead of saving the entire Nuke script,  this tool allows you to save "snippets" as either `.nk` (Nuke script) or `.txt` (Text) files,  which can be easily shared, archived, or imported into other projects.
 
-git add <node_preview>
-
 -----------------------------------------------------------
  Help Documentation: SAC Node Exporter (v1.0.0)
 
