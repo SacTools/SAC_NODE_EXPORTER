@@ -1,0 +1,32 @@
+set cut_paste_input [stack 0]
+version 15.2 v1
+push $cut_paste_input
+NoOp {
+ name SAC_Node_Exporter
+ tile_color 0xff5f00ff
+ selected true
+ xpos 388
+ ypos 2331
+ addUserKnob {20 User l "SAC Export"}
+ addUserKnob {26 title l "" -STARTLINE T "<b><font size='6' color='#ff5f00'>SAC</font> <font size='6'>Node Exporter</font></b>"}
+ addUserKnob {26 subtitle l "" +STARTLINE T "<font color='#777'>Select nodes and choose a destination format below.</font>"}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {22 get_script_path l "<b>Get Script Directory</b>" T "import os\nroot_name = nuke.root().name()\nif root_name == 'Root' or not root_name:\n    nuke.message('Script not saved. Please save script first.')\nelse:\n    path = os.path.dirname(root_name)\n    nuke.thisNode()\['export_path'].setValue(path)" +STARTLINE}
+ addUserKnob {2 export_path l "<b>Export Path </b>"}
+ addUserKnob {1 export_name l "<b>File Name   </b>"}
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 spacer l "" +STARTLINE T " "}
+ addUserKnob {22 export_txt l "   <b>Export as .TXT</b>   " T "import nuke\nimport os\n\ndef export_txt_direct():\n    nodes = nuke.selectedNodes()\n    if not nodes:\n        nuke.message('Please select at least one node.')\n        return\n    \n    base_folder = nuke.thisNode()\['export_path'].value().strip()\n    filename = nuke.thisNode()\['export_name'].value().strip()\n    \n    if not base_folder or not filename:\n        nuke.message('Please provide both Export Path and File Name.')\n        return\n\n    # Create subfolder logic\n    export_folder = os.path.join(base_folder, 'Exported_Nodes')\n    \n    if not filename.lower().endswith('.txt'):\n        filename += '.txt'\n    \n    full_path = os.path.join(export_folder, filename)\n    \n    try:\n        if not os.path.exists(export_folder):\n            os.makedirs(export_folder)\n            \n        nuke.nodeCopy(full_path)\n        nuke.message('Export Successful:\\n' + full_path)\n    except Exception as e:\n        nuke.message('Export Failed:\\n' + str(e))\n\nexport_txt_direct()" +STARTLINE}
+ addUserKnob {22 export_nk l "   <b>Export as .NK</b>   " -STARTLINE T "import nuke\nimport os\n\ndef export_nk_direct():\n    nodes = nuke.selectedNodes()\n    if not nodes:\n        nuke.message('Please select at least one node.')\n        return\n    \n    base_folder = nuke.thisNode()\['export_path'].value().strip()\n    filename = nuke.thisNode()\['export_name'].value().strip()\n    \n    if not base_folder or not filename:\n        nuke.message('Please provide both Export Path and File Name.')\n        return\n\n    # Create subfolder logic\n    export_folder = os.path.join(base_folder, 'Exported_Nodes')\n    \n    if not filename.lower().endswith('.nk'):\n        filename += '.nk'\n    \n    full_path = os.path.join(export_folder, filename)\n    \n    try:\n        if not os.path.exists(export_folder):\n            os.makedirs(export_folder)\n            \n        nuke.nodeCopy(full_path)\n        nuke.message('Export Successful:\\n' + full_path)\n    except Exception as e:\n        nuke.message('Export Failed:\\n' + str(e))\n\nexport_nk_direct()"}
+ addUserKnob {26 spacer_2 l "" +STARTLINE T " "}
+ addUserKnob {22 open_folder l "<b>Open Exported Folder</b>" T "import os\nimport subprocess\nimport platform\n\nbase_path = nuke.thisNode()\['export_path'].value().strip()\ntarget_path = os.path.join(base_path, 'Exported_Nodes')\n\n# Fallback to base path if subfolder doesn't exist yet\npath_to_open = target_path if os.path.exists(target_path) else base_path\n\nif os.path.exists(path_to_open):\n    if platform.system() == 'Windows':\n        os.startfile(path_to_open)\n    elif platform.system() == 'Darwin':\n        subprocess.Popen(\['open', path_to_open])\n    else:\n        subprocess.Popen(\['xdg-open', path_to_open])\nelse:\n    nuke.message('Path does not exist yet.')" +STARTLINE}
+ addUserKnob {26 info_footer l "" +STARTLINE T "<br><font size='2' color='#555'>SAC Node Exporter v1.0.0</font>"}
+ addUserKnob {20 about_tab l About}
+ addUserKnob {26 inf_t l "" +STARTLINE T "<font size=\"6\" color=\"#ff5f00\"><b>SAC _NODE_EXPORTER</b></font> <font size=\"3\" color=\"#666\">v1.0.0</font>"}
+ addUserKnob {26 inf_s l "" +STARTLINE T "<font size=\"2\" color=\"#777\">CREATED BY: <b>SAC TOOLS</b> &nbsp;|&nbsp; SUPPORT: <b>sactools.support@gmail.com</b></font>"}
+ addUserKnob {26 inf_d1 l "" +STARTLINE}
+ addUserKnob {26 inf_h l "<b>HELP & USAGE</b>" T "<div style=\"margin-top:5px; border-left:3px solid #ff5f00; padding-left:10px; line-height:150%; color:#bbb;\">The SAC_Node_Exporter is a simple and fast tool for exporting specific selected node <br>into .txt or .nk. Which can be shared.<br><br> 1.File path<br>   -Hit <b><font color=\"#eee\">Get Script Directory:</font></b> it Automatically grabs the <b><font color=\"#eee\">Export Path</font></b> with the <br>   directory of your currently open Nuke script. <br>    <i>Note: if the script is not saved you can enter the path manually .</i><br>   -<b><font color=\"#eee\">File Name :</font></b> Enter the desired name for your file (e.g., `Color_Grade_Setup`).<br><br> 2. Exporting<br>The tool automatically creates a subfolder named <b><font color=\"#eee\">`Exported_Nodes`</font></b> within your chosen<br> Export Path to keep your files organized.<br><br><i>   <b><font color=\"#eee\">Export as .TXT :</font></b> <br>    Saves the currently selected nodes as a `.txt` file. <br>    This is useful for copy-pasting node data into emails, chat apps, or documentation.<br></i>   <b><font color=\"#eee\">Export as .NK :</font></b> <br>    Saves the selected nodes as a standard Nuke script file. <br>    This can be brought back into Nuke via `File > Import`or <br>    by dragging the file into the Node Graph.<br><br> 3. Utilities<br>*   <b><font color=\"#eee\">Open Exported Folder :</font></b> <br>     Opens the file explorer</div>"}
+ addUserKnob {26 inf_d2 l "" +STARTLINE}
+ addUserKnob {22 inf_btn l "  View Full Documentation  " -STARTLINE T "import webbrowser\nwebbrowser.open(\"https://github.com/SacTools/SAC-_NODE_EXPORTER/tree/main?tab=readme-ov-file%d\")"}
+ addUserKnob {26 inf_date l "" +STARTLINE T "<font size=\"1\" color=\"#444\">Last Updated: 2026-05-19</font>"}
+}
