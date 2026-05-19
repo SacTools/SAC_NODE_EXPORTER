@@ -1,5 +1,5 @@
-# SAC-_NODE_EXPORTER
-The **SAC Node Exporter** is a utility tool designed to streamline the process of exporting  specific node selections into external files. Instead of saving the entire Nuke script,  this tool allows you to save "snippets" as either `.nk` (Nuke script) or `.txt` (Text) files,  which can be easily shared, archived, or imported into other projects.
+# SAC_NODE_EXPORTER
+The **SAC_Node_Exporter** is a simple and fast tool for exporting specific node selections into external files. Instead of saving the entire Nuke script,  this tool allows you to save "snippets" as either `.nk` (Nuke script) or `.txt` (Text) files,  which can be easily shared, archived, or imported into other projects.
 
 
 
@@ -7,7 +7,7 @@ The **SAC Node Exporter** is a utility tool designed to streamline the process o
  Help Documentation: SAC Node Exporter (v1.0.0)
 
 ## Overview
-The **SAC Node Exporter** is a utility tool designed to streamline the process of exporting specific node selections into external files. Instead of saving the entire Nuke script, this tool allows you to save "snippets" as either `.nk` (Nuke script) or `.txt` (Text) files, which can be easily shared, archived, or imported into other projects.
+The **SAC_Node_Exporter** is a utility tool designed to streamline the process of exporting specific node selections into external files. Instead of saving the entire Nuke script, this tool allows you to save "snippets" as either `.nk` (Nuke script) or `.txt` (Text) files, which can be easily shared, archived, or imported into other projects.
 
 ---
 
@@ -36,3 +36,13 @@ The tool automatically creates a subfolder named **`Exported_Nodes`** within you
  3. Utilities
 *   **Open Exported Folder :** 
     Opens the file explorer (Windows Explorer, macOS Finder, or Linux Nautilus) directly to the `Exported_Nodes` directory.
+
+
+
+    Feel free to modify the tool as per your needs.
+
+    If the tool was useful or if there is any improved needed it would be kind if you leave a feedback on **sactools.support@gmail.com** .
+
+    If you have any repetative tasks in nuke which need automation please me know. 
+
+    THANK YOU
